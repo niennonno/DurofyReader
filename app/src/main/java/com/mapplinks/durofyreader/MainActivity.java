@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<30;++i){
             Article article1=new Article();
             article1.setTitle("Hello! this is your post which is supposed to be huge and so it is. The is post number "+(i+1));
-            article1.setAuthor("The author is mr.X" + i+"It was written at some point of time. Who cares. AmIRight.");
+            article1.setAuthor("Author | DD:MM:YYYY");
             mArticles.add(article1);
         }
 

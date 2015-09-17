@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="@dimen/row_height"
-    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp"
     >
 
     <ImageView
@@ -19,11 +19,12 @@
     <TextView
         android:id="@+id/title"
         android:text="Blog Post Title, Blog Post TitleBlog Post TitleBlog Post"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:maxLines="2"
+        android:maxLines="3"
+        android:textColor="@color/categoryColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textStyle="bold"
         android:ellipsize="end"
-        android:paddingLeft="4dp"
+        android:paddingLeft="8dp"
         android:layout_toRightOf="@id/image"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"/>
@@ -31,24 +32,26 @@
         android:id="@+id/summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="3"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:ellipsize="end"
         android:text="Summary,SummarySummarySummarySummarySummarySummarySummarySummarySummary"
-        android:textColor="@android:color/darker_gray"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/authorColor"
         android:layout_toRightOf="@+id/image"
         android:layout_below="@+id/title"
-        android:padding="4dp"/>
+        android:paddingLeft="8dp"
+        />
     <TextView
         android:maxLines="1"
         android:ellipsize="end"
-        android:paddingLeft="4dp"
+        android:paddingLeft="8dp"
         android:textAllCaps="true"
         android:id="@+id/categories"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/headingColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is my category?"
+        android:text="Category"
         android:layout_toRightOf="@+id/image"
         android:layout_below="@+id/summary"
 
