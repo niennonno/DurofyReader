@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#23294F</color>
+    <color name="primaryDark">#1A1E3B</color>
+    <color name="headingColor">#666666</color>
+    <color name="authorColor"> #999999</color>
+    <color name="categoryColor">#1A1A1A</color>
+</resources>

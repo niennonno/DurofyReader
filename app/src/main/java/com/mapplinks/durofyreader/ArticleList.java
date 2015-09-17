@@ -15,5 +15,4 @@ private ArticleList(){}
         }
         return sInstance;
     }
-
 }
