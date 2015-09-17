@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="@dimen/row_height"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_marginLeft="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:src="@drawable/default_article_thumbnail"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:text="Blog Post Title, Blog Post TitleBlog Post TitleBlog Post"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:paddingLeft="4dp"
+        android:layout_toRightOf="@id/image"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="Summary,SummarySummarySummarySummarySummarySummarySummarySummarySummary"
+        android:textColor="@android:color/darker_gray"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_toRightOf="@+id/image"
+        android:layout_below="@+id/title"
+        android:padding="4dp"/>
+    <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingLeft="4dp"
+        android:textAllCaps="true"
+        android:id="@+id/categories"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is my category?"
+        android:layout_toRightOf="@+id/image"
+        android:layout_below="@+id/summary"
+
+        />
+
+</RelativeLayout>
