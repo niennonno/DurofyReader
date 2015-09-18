@@ -1,5 +1,7 @@
 package com.mapplinks.durofyreader;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,10 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,67 +29,54 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArticleList mArticles;
+    private  String mFileContents;
+    private  ArticleList mArticles;
+    private Article article;
     private ArticleAdapter mAdapter;
-   // private TextView xmlTextView;
+    private ParseArticles parseArticles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // xmlTextView=(TextView)findViewById(R.id.xmlTextView);
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://www.durofy.com/feed/");
 
-        mArticles = ArticleList.getInstance();
 
-        for(int i=0;i<30;++i){
-            Article article1=new Article();
-            article1.setTitle("Hello! this is your post which is supposed to be huge and so it is. The is post number "+(i+1));
-            article1.setAuthor("Author | DD:MM:YYYY");
+/*
+        for (int i = 0; i < 30; ++i) {
+            Article article1 = new Article();
+            article1.setTitle("Hello! this is your post which is supposed to be huge and so it is. The is post number " + (i + 1));
+            article1.setAuthor("Author Name | DD:MM:YYYY");
             mArticles.add(article1);
-        }
+        }*/
 
-        ListView listView = (ListView)findViewById(R.id.article_list);
-        mAdapter=new ArticleAdapter(mArticles);
-        listView.setAdapter(mAdapter);
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            int previousFirstItem = 0;
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (firstVisibleItem > previousFirstItem) {
-                    getSupportActionBar().hide();
-                } else if (firstVisibleItem < previousFirstItem) {
-                    getSupportActionBar().show();
-                }
-
-                previousFirstItem = firstVisibleItem;
-            }
-        });
     }
 
-    private class ArticleAdapter extends ArrayAdapter<Article>{
-        ArticleAdapter(ArrayList<Article> articles){
-            super(MainActivity.this,R.layout.article_list_view,R.id.title,articles);
+    private class ArticleAdapter extends ArrayAdapter<Article> {
+        ArticleAdapter(ArrayList<Article> articles) {
+            super(MainActivity.this, R.layout.article_list_view, R.id.title, articles);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = super.getView(position, convertView, parent);
 
-            Article article=getItem(position);
+            Article article = getItem(position);
 
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
-            TextView summaryTextView = (TextView)convertView.findViewById(R.id.summary);
+            TextView summaryTextView = (TextView) convertView.findViewById(R.id.summary);
+            TextView categoryTextView = (TextView) convertView.findViewById(R.id.category);
+            ImageView image = (ImageView) convertView.findViewById(R.id.image);
+
             titleTextView.setText(article.getTitle());
-            summaryTextView.setText(article.getAuthor());
+            summaryTextView.setText(article.getAuthor() + " | " + article.getTimeStamp());
+            categoryTextView.setText(article.getCategory());
+            Picasso.with(MainActivity.this)
+                    .load(article.getImageUrl())
+                    .error(R.drawable.default_article_thumbnail)
+                    .into(image);
             return convertView;
         }
     }
@@ -112,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     private class DownloadData extends AsyncTask<String, Void, String> {
 
-        private String mFileContents;
-
         @Override
         protected String doInBackground(String... params) {
             mFileContents = downloadXMLFile(params[0]);
@@ -126,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.d("DownloadData", "Result was:\n" + result);
             Toast.makeText(MainActivity.this, "XML Downloaded!", Toast.LENGTH_SHORT).show();
-            Log.d("onPostExecute","Downloaded TT.TT");
-          //  xmlTextView.setText(mFileContents);
+            populateListView();
+            Log.d("onPostExecute", "Downloaded TT.TT");
+            //  xmlTextView.setText(mFileContents);
         }
 
         private String downloadXMLFile(String urlPath) {
@@ -162,4 +153,44 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    public void populateListView(){
+
+        parseArticles = new ParseArticles(mFileContents);
+        parseArticles.process();
+        ListView listView = (ListView) findViewById(R.id.article_list);
+        mArticles = ArticleList.getInstance();
+        mArticles=parseArticles.getArticleList();
+        mAdapter = new ArticleAdapter(mArticles);
+        listView.setAdapter(mAdapter);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            int previousFirstItem = 0;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (firstVisibleItem > previousFirstItem) {
+                    getSupportActionBar().hide();
+                } else if (firstVisibleItem < previousFirstItem) {
+                    getSupportActionBar().show();
+                }
+
+                previousFirstItem = firstVisibleItem;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                article=mArticles.get(position);
+                Toast.makeText(MainActivity.this, "URL: "+ article.getLink(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

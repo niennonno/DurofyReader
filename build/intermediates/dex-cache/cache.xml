@@ -2,11 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jar="C:\Users\Aditya Vikram\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.4.0\f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2\picasso-2.4.0.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
-        <dex dex="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\pre-dexed\debug\classes-70d21b28247edb00150e8677cf40821413ac7312.jar" />
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\pre-dexed\debug\picasso-2.4.0-2300ccabb14bdb6f7c93a89eabe3dbf1f9ebf7b6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\libs\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-6f7cbf73eb1c40ffa1adf2fd702c50926d25e442.jar" />
     </item>
     <item
         jar="C:\Users\Aditya Vikram\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
@@ -28,6 +35,13 @@
         revision="23.0.0"
         sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
         <dex dex="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-110f987c94e00f971ad1b28c8a95a5a6eaa6152c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\Aditya Vikram\Documents\Android Projects\DurofyReader\app\build\intermediates\pre-dexed\debug\classes-70d21b28247edb00150e8677cf40821413ac7312.jar" />
     </item>
 
 </items>

@@ -1,6 +1,8 @@
 package com.mapplinks.durofyreader;
 
+import android.media.Image;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
 import java.io.Serializable;
 
@@ -8,19 +10,13 @@ import java.io.Serializable;
 /**
  * Created by Aditya Vikram on 9/16/2015.
  */
-public class Article implements Serializable{
+public class Article implements Serializable {
     private String Title;
     private String Author;
     private String timeStamp;
     private String category;
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
-    }
+    private String imageUrl;
+    private String link;
 
     public void setTitle(String title) {
         Title = title;
@@ -31,7 +27,6 @@ public class Article implements Serializable{
     }
 
     public String getTitle() {
-
         return Title;
     }
 
@@ -43,8 +38,29 @@ public class Article implements Serializable{
         return category;
     }
 
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getImageUrl() {        return imageUrl;}
+
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
 

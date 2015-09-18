@@ -46,7 +46,7 @@
         android:ellipsize="end"
         android:paddingLeft="8dp"
         android:textAllCaps="true"
-        android:id="@+id/categories"
+        android:id="@+id/category"
         android:textColor="@color/headingColor"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"

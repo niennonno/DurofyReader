@@ -23,39 +23,70 @@ public class ParseArticles {
         return articleList;
     }
 
-    public boolean process(){
-        boolean status=true;
-        Article currentRecord;
-        boolean inEntry=false;
+    public boolean process() {
+        boolean status = true;
+        Article currentRecord=null;
+        boolean inEntry = false;
         String textValue = "";
-
+        boolean firstCategory=true;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
-            XmlPullParser xpp=factory.newPullParser();
+            XmlPullParser xpp = factory.newPullParser();
             xpp.setInput(new StringReader(this.xmlData));
 
-            int eventType=xpp.getEventType();
+            int eventType = xpp.getEventType();
 
-            while (eventType!=XmlPullParser.END_DOCUMENT){
-                String tagName =xpp.getName();
-                switch(eventType){
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagName = xpp.getName();
+                switch (eventType) {
                     case XmlPullParser.START_TAG:
                         if (tagName.equalsIgnoreCase("item")) {
-                            inEntry=true;
-                            currentRecord=new Article();
-
+                            inEntry = true;
+                            currentRecord = new Article();
+                            firstCategory=true;
                         }
                         break;
-                    case XmlPullParser.END_TAG:
+
+                    case XmlPullParser.TEXT:
+                        textValue=xpp.getText();
                         break;
+
+                    case XmlPullParser.END_TAG:
+                        if (inEntry){
+                            if (tagName.equalsIgnoreCase("item")){
+                                articleList.add(currentRecord);
+                                inEntry=false;
+                                firstCategory=true;
+                            }else if (tagName.equalsIgnoreCase("title")){
+                                currentRecord.setTitle(textValue);
+                            }else if (tagName.equalsIgnoreCase("link")){
+                                currentRecord.setLink(textValue);
+                            }else if (tagName.equalsIgnoreCase("pubdate")){
+                                currentRecord.setTimeStamp(textValue);
+                            }else if (tagName.equalsIgnoreCase("author")){
+                                currentRecord.setAuthor(textValue);
+                            }else if (tagName.equalsIgnoreCase("category")){
+                                if (firstCategory){
+                                    currentRecord.setCategory(textValue);
+                                    firstCategory=false;
+                                }
+                            }else if (tagName.equalsIgnoreCase("image")){
+                                currentRecord.setImageUrl(textValue);
+                            }else if (tagName.equalsIgnoreCase("link")){
+                                currentRecord.setLink(textValue);
+
+                            }
+                        }
+                        break;
+
                     default:
                         //NOthing
                 }
-                eventType=xpp.next();
+                eventType = xpp.next();
             }
-        }catch (Exception e){
-            status=false;
+        } catch (Exception e) {
+            status = false;
             e.printStackTrace();
         }
         return true;
