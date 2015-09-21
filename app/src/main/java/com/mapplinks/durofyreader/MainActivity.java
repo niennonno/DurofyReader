@@ -1,5 +1,6 @@
 package com.mapplinks.durofyreader;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -174,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (firstVisibleItem > previousFirstItem) {
-                    getSupportActionBar().hide();
                 } else if (firstVisibleItem < previousFirstItem) {
                     getSupportActionBar().show();
                 }
@@ -188,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 article=mArticles.get(position);
                 Toast.makeText(MainActivity.this, "URL: "+ article.getLink(), Toast.LENGTH_SHORT).show();
+                Intent pass =new Intent(MainActivity.this,WebActivity.class);
+                pass.putExtra("URL", article.getLink());
+                startActivity(pass);
             }
         });
 
