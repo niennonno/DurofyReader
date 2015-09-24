@@ -75,7 +75,8 @@ public class ParseArticles {
                                 currentRecord.setImageUrl(textValue);
                             }else if (tagName.equalsIgnoreCase("link")){
                                 currentRecord.setLink(textValue);
-
+                            }else if (tagName.equalsIgnoreCase("description")){
+                                currentRecord.setDescription(textValue);
                             }
                         }
                         break;

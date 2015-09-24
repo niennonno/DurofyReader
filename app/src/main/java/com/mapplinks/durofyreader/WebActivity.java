@@ -1,25 +1,34 @@
 package com.mapplinks.durofyreader;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class WebActivity extends AppCompatActivity {
 
-    private String url;
-    private  WebView webView;
+    private String description = "<html><body>";
+    private WebView webView;
+//    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
+//        textView=(TextView)findViewById(R.id.textView);
+
+       description= description.concat(getIntent().getStringExtra("Description"));
+       description= description.concat("</body></html>");
+
+//        textView.setText(description);
+
         webView = (WebView)findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        url=getIntent().getStringExtra( "URL");
-        webView.loadUrl(url);
+        webView.loadData(description, "text/html", "utf-8");
     }
 
     @Override

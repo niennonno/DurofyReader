@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 article=mArticles.get(position);
                 Toast.makeText(MainActivity.this, "URL: "+ article.getLink(), Toast.LENGTH_SHORT).show();
                 Intent pass =new Intent(MainActivity.this,WebActivity.class);
-                pass.putExtra("URL", article.getLink());
+                pass.putExtra("Description", article.getDescription());
                 startActivity(pass);
             }
         });

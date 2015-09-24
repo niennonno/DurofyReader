@@ -17,6 +17,7 @@ public class Article implements Serializable {
     private String category;
     private String imageUrl;
     private String link;
+    private String description;
 
     public void setTitle(String title) {
         Title = title;
@@ -61,6 +62,14 @@ public class Article implements Serializable {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
