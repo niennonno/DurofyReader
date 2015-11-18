@@ -1,9 +1,5 @@
 package com.mapplinks.durofyreader;
 
-import android.media.Image;
-import android.os.Parcelable;
-import android.widget.ImageView;
-
 import java.io.Serializable;
 
 

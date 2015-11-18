@@ -1,17 +1,15 @@
 package com.mapplinks.durofyreader;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class WebActivity extends AppCompatActivity {
 
     private String description = "<html><body>";
+    String link;
     private WebView webView;
 //    private TextView textView;
 
@@ -22,13 +20,17 @@ public class WebActivity extends AppCompatActivity {
 
 //        textView=(TextView)findViewById(R.id.textView);
 
+        link = getIntent().getStringExtra("Link");
        description= description.concat(getIntent().getStringExtra("Description"));
        description= description.concat("</body></html>");
 
 //        textView.setText(description);
 
         webView = (WebView)findViewById(R.id.webView);
-        webView.loadData(description, "text/html", "utf-8");
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+//        webView.loadData(description, "text/html", "utf-8");
+        webView.loadUrl(link);
     }
 
     @Override

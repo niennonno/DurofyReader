@@ -1,11 +1,9 @@
 package com.mapplinks.durofyreader;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,15 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://www.durofy.com/feed/");
-
-
-/*
-        for (int i = 0; i < 30; ++i) {
-            Article article1 = new Article();
-            article1.setTitle("Hello! this is your post which is supposed to be huge and so it is. The is post number " + (i + 1));
-            article1.setAuthor("Author Name | DD:MM:YYYY");
-            mArticles.add(article1);
-        }*/
 
     }
 
@@ -190,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "URL: "+ article.getLink(), Toast.LENGTH_SHORT).show();
                 Intent pass =new Intent(MainActivity.this,WebActivity.class);
                 pass.putExtra("Description", article.getDescription());
+                pass.putExtra("Link",article.getLink());
                 startActivity(pass);
             }
         });

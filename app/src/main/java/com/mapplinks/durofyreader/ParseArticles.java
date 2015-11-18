@@ -1,7 +1,5 @@
 package com.mapplinks.durofyreader;
 
-import android.app.Application;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -82,7 +80,7 @@ public class ParseArticles {
                         break;
 
                     default:
-                        //NOthing
+                        //Nothing
                 }
                 eventType = xpp.next();
             }
